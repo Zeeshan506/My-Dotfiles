@@ -1,0 +1,72 @@
+{
+  "layer": "top",
+  "position": "top",
+  "height": 24,
+  "spacing": 8,
+
+  "modules-left": [
+    "custom/arch",
+    "temperature",
+    "cpu",
+    "memory",
+    "hyprland/workspaces"
+  ],
+
+  "modules-center": [
+    "custom/logo"
+  ],
+
+  "modules-right": [
+    "pulseaudio",
+    "network",
+    "battery",
+    "clock"
+  ],
+
+  "custom/arch": {
+    "format": ""
+  },
+
+  "custom/logo": {
+    "format": ""
+  },
+
+  "hyprland/workspaces": {
+    "format": "{name}",
+    "persistent-workspaces": {
+      "*": 5
+    }
+  },
+
+  "clock": {
+    "format": "{:%H:%M}"
+  },
+
+  "cpu": {
+    "format": " {usage}%"
+  },
+
+  "memory": {
+    "format": " {percentage}%"
+  },
+
+  "temperature": {
+    "format": " {temperatureC}°C"
+  },
+
+  "pulseaudio": {
+    "format": " {volume}%",
+    "format-muted": ""
+  },
+
+  "network": {
+    "format-wifi": "",
+    "format-ethernet": "󰈀",
+    "format-disconnected": "󰤭"
+  },
+
+  "battery": {
+    "format": " {capacity}%",
+    "format-charging": " {capacity}%"
+  }
+}

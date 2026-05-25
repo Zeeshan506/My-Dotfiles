@@ -1,0 +1,14 @@
+# cache/temp
+*.log
+.cache/
+.DS_Store
+
+# local secrets
+.env
+*.key
+*.pem
+*.crt
+
+# zsh noise
+.zcompdump*
+.zsh_history

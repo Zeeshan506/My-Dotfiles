@@ -1,0 +1,73 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run `zed: open default settings` from the
+// command palette (cmd-shift-p / ctrl-shift-p)
+{
+  "git": {
+    "disable_git": false
+  },
+  "ui_font_family": "JetBrains Mono NL",
+  "buffer_font_family": "JetBrains Mono NL",
+  "terminal": {
+    "shell": {
+      "program": "zsh"
+    },
+    "font_family": "JetBrains Mono"
+  },
+  "project_panel": {
+    "dock": "left",
+  },
+  "collaboration_panel": {
+    "dock": "left",
+  },
+  "outline_panel": {
+    "dock": "left",
+  },
+  "git_panel": {
+    "dock": "left",
+  },
+  "agent": {
+    "dock": "right",
+    "default_model": {
+      "provider": "copilot_chat",
+      "model": "gpt-4.1",
+      "enable_thinking": false,
+    },
+    "favorite_models": [],
+    "model_parameters": [],
+  },
+  "edit_predictions": {
+    "provider": "copilot",
+  },
+  "cli_default_open_behavior": "existing_window",
+  "icon_theme": {
+    "mode": "light",
+    "light": "Zed (Default)",
+    "dark": "Zed (Default)",
+  },
+  "session": {
+    "trust_all_worktrees": true,
+  },
+  "vim_mode": true,
+  "agent_servers": {
+    "codex-acp": {
+      "type": "registry"
+    },
+    "github-copilot-cli": {
+      "type": "registry",
+    },
+  },
+  "ui_font_size": 18.0,
+  "buffer_font_size": 20,
+  "buffer_line_height": "comfortable",
+  "buffer_font_weight": 600,
+  "theme": {
+    "mode": "dark",
+    "light": "One Light",
+    "dark": "One Dark Pro",
+  },
+}
