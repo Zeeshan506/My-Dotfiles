@@ -1,72 +1,177 @@
 {
   "layer": "top",
   "position": "top",
-  "height": 24,
+  "height": 32,
   "spacing": 8,
 
   "modules-left": [
     "custom/arch",
-    "temperature",
-    "cpu",
-    "memory",
-    "hyprland/workspaces"
+    "hyprland/workspaces",
+    "group/hardware"
   ],
 
   "modules-center": [
-    "custom/logo"
+    "hyprland/window"
   ],
 
   "modules-right": [
+    "custom/notification",
     "pulseaudio",
-    "network",
-    "battery",
-    "clock"
+    "group/connections",
+    "clock",
+    "custom/power"
   ],
 
   "custom/arch": {
-    "format": ""
-  },
-
-  "custom/logo": {
-    "format": ""
+    "format": "",
+    "tooltip": false,
+    "on-click": "hyprlauncher"
   },
 
   "hyprland/workspaces": {
     "format": "{name}",
+    "disable-scroll": true,
+    "all-outputs": true,
     "persistent-workspaces": {
       "*": 5
     }
   },
 
-  "clock": {
-    "format": "{:%H:%M}"
+  "hyprland/window": {
+    "format": "{title}",
+    "max-length": 40,
+    "separate-outputs": true
+  },
+
+  "group/hardware": {
+    "orientation": "inherit",
+    "drawer": {
+      "transition-duration": 300,
+      "children-class": "hw-child",
+      "transition-left-to-right": true
+    },
+    "modules": [
+      "custom/system",
+      "cpu",
+      "memory",
+      "temperature"
+    ]
+  },
+
+  "custom/system": {
+    "format": "󰒋",
+    "tooltip": false
   },
 
   "cpu": {
-    "format": " {usage}%"
+    "format": "󰻠  {usage}%",
+    "on-click": "kitty -e btop"
   },
 
   "memory": {
-    "format": " {percentage}%"
+    "format": "  {percentage}%",
+    "on-click": "kitty -e btop"
   },
 
   "temperature": {
-    "format": " {temperatureC}°C"
+    "format": "  {temperatureC}°C"
   },
 
-  "pulseaudio": {
-    "format": " {volume}%",
-    "format-muted": ""
+  "clock": {
+    "format": "{:%H:%M}",
+    "format-alt": "{:%A, %B %d, %Y}",
+    "tooltip-format": "<tt><small>{calendar}</small></tt>"
+  },
+
+  "group/connections": {
+    "orientation": "inherit",
+    "drawer": {
+      "transition-duration": 300,
+      "children-class": "conn-child",
+      "transition-left-to-right": false
+    },
+    "modules": [
+      "network",
+      "bluetooth",
+      "power-profiles-daemon",
+      "battery"
+    ]
   },
 
   "network": {
-    "format-wifi": "",
-    "format-ethernet": "󰈀",
-    "format-disconnected": "󰤭"
+    "format-wifi": " ",
+    "format-ethernet": "󰈀 ",
+    "format-disconnected": "󰤭 ",
+    "tooltip-format": "{essid} ({signalStrength}%)",
+    "on-click": "kitty -e nmtui"
+  },
+
+  "bluetooth": {
+    "format": "",
+    "format-disabled": "󰂲",
+    "format-connected": "󰂱",
+    "tooltip-format": "{controller_alias}\n{num_connections} connected",
+    "on-click": "blueman-manager"
+  },
+
+  "power-profiles-daemon": {
+    "format": "{icon}",
+    "tooltip-format": "Power profile: {profile}",
+    "tooltip": true,
+    "format-icons": {
+      "default": "",
+      "performance": "",
+      "balanced": "",
+      "power-saver": ""
+    }
   },
 
   "battery": {
-    "format": " {capacity}%",
-    "format-charging": " {capacity}%"
+    "states": {
+      "warning": 30,
+      "critical": 15
+    },
+    "format": "{icon}  {capacity}%",
+    "format-charging": "  {capacity}%",
+    "format-plugged": "  {capacity}%",
+    "format-icons": ["", "", "", "", ""],
+    "on-scroll-up": "brightnessctl set 5%+",
+    "on-scroll-down": "brightnessctl set 5%-",
+    "tooltip-format": "Scroll to adjust brightness"
+  },
+
+  "pulseaudio": {
+    "format": "  {volume}%",
+    "format-muted": "  Muted",
+    "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+    "on-click-right": "pavucontrol",
+    "scroll-step": 5
+  },
+
+  "custom/notification": {
+    "tooltip": false,
+    "format": "{icon}",
+    "format-icons": {
+      "notification": " <span foreground='#ffffff'><sup></sup></span>",
+      "none": " ",
+      "dnd-notification": " <span foreground='#ffffff'><sup></sup></span>",
+      "dnd-none": " ",
+      "inhibited-notification": " <span foreground='#ffffff'><sup></sup></span>",
+      "inhibited-none": " ",
+      "dnd-inhibited-notification": " <span foreground='#ffffff'><sup></sup></span>",
+      "dnd-inhibited-none": " "
+    },
+    "return-type": "json",
+    "exec-if": "which swaync-client",
+    "exec": "swaync-client -swb",
+    "on-click": "swaync-client -t -sw",
+    "on-click-right": "swaync-client -d -sw",
+    "escape": true
+  },
+
+  "custom/power": {
+    "format": "⏻",
+    "tooltip": false,
+    "on-click": "~/.config/waybar/power_menu.sh"
   }
 }

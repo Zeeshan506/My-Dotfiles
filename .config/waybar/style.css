@@ -1,9 +1,18 @@
 * {
-  font-family: "JetBrainsMono Nerd Font", "JetBrains Mono", monospace;
-  font-size: 11px;
+  font-family: "JetBrainsMono Nerd Font Mono", "JetBrains Mono", monospace;
+  font-size: 13px; /* Enlarged font */
   font-weight: 600;
   min-height: 0;
 }
+
+/* Monochrome Palette utilized:
+  #050505 - Deep Background
+  #121212 - Module Background  #1E1E1E - Hover State
+  #555555 - Dim/Inactive Te:windowt
+  #8A8A8A - Standard Text
+  #D0D0D0 - Active/Highlight Text
+  #FFFFFF - Alerts/Icons
+*/
 
 window#waybar {
   background: #050505;
@@ -11,55 +20,119 @@ window#waybar {
   border: none;
 }
 
-#workspaces {
-  background: transparent;
-}
-
-#workspaces button {
-  color: #555555;
-  background: transparent;
-  border: none;
-  padding: 0 6px;
-  margin: 0;
-}
-
-#workspaces button.active {
-  color: #d0d0d0;
-}
-
-#workspaces button:hover {
-  color: #ffffff;
-  background: transparent;
-  box-shadow: none;
-}
-
+/* Base spacing and padding for all modules */
+#workspaces button,
 #custom-arch,
-#custom-logo,
+#custom-system,
 #temperature,
 #cpu,
 #memory,
 #clock,
 #battery,
 #pulseaudio,
-#network {
+#network,
+#bluetooth,
+#custom-notification,
+#power-profiles-daemon,
+#custom-power,
+#window {
   color: #8a8a8a;
-  padding: 0 6px;
+  padding: 0 12px;
+  margin: 4px 2px;
+  background: #121212;
+  border-radius: 4px; /* Slight rounding to separate the modules, set to 0 for pure blockiness */
+  transition: all 0.2s ease-in-out;
+}
+
+/* Active Window Title */
+#window {
+  color: #d0d0d0;
   background: transparent;
 }
 
-#custom-logo {
+/* Workspaces */
+#workspaces {
+  background: transparent;
+}
+
+#workspaces button {
+  color: #555555;
+  padding: 0 8px;
+  margin: 4px 2px;
+  background: #121212;
+}
+
+#workspaces button.active {
   color: #d0d0d0;
-  font-size: 13px;
+  background: #1e1e1e;
+}
+
+#workspaces button:hover {
+  color: #ffffff;
+  background: #2a2a2a;
+}
+
+/* Hover highlights */
+#clock:hover,
+#pulseaudio:hover,
+#network:hover,
+#bluetooth:hover,
+#cpu:hover,
+#memory:hover,
+#custom-notification:hover,
+#custom-power:hover {
+  color: #ffffff;
+  background: #1e1e1e;
+}
+
+/* Drawers & Groups */
+#group-hardware,
+#group-connections {
+  background: transparent;
+}
+
+/* Specific Component Colors */
+#custom-arch {
+  color: #ffffff;
+  background: transparent;
+  font-size: 15px;
+  padding: 0 14px;
+}
+
+#custom-power {
+  color: #d0d0d0;
+  padding-right: 16px;
 }
 
 #battery.charging {
-  color: #bdbdbd;
-}
-
-#battery.warning {
   color: #d0d0d0;
 }
 
-#battery.critical {
+#battery.warning {
   color: #ffffff;
+  background: #1e1e1e;
+}
+
+#battery.critical {
+  color: #050505;
+  background: #ffffff;
+  animation: blink 1.5s steps(1) infinite;
+}
+
+/* Tooltips */
+tooltip {
+  background: #050505;
+  border: 1px solid #1e1e1e;
+  border-radius: 0;
+}
+
+tooltip label {
+  color: #d0d0d0;
+}
+
+@keyframes blink {
+  50% {
+    color: #ffffff;
+    background: #050505;
+  }
 }
