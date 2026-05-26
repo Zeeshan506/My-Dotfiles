@@ -102,6 +102,10 @@ alias ll='eza -lh --color=always --icons=always --git'
 alias la='eza -lha --color=always --icons=always --git'
 alias tree='eza --tree --icons=always'
 
+
+alias s='yay -Ss'
+
+
 # -----------------------------
 # External tools
 # -----------------------------
