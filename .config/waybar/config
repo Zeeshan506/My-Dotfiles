@@ -25,7 +25,7 @@
   "custom/arch": {
     "format": "",
     "tooltip": false,
-    "on-click": "hyprlauncher"
+    "on-click": "rofi -show drun"
   },
 
   "hyprland/workspaces": {
