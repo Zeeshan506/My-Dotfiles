@@ -16,13 +16,13 @@ chosen=$(echo -e "$options" | rofi -dmenu -i -p "Power")
 # Execute the corresponding command based on the selection
 case $chosen in
 "$lock")
-  hyprlock
+  swaylock -f
   ;;
 "$suspend")
   systemctl suspend
   ;;
 "$logout")
-  hyprctl dispatch exit
+  niri msg action quit
   ;;
 "$reboot")
   systemctl reboot

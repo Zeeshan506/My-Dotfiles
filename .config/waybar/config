@@ -6,12 +6,12 @@
 
   "modules-left": [
     "custom/arch",
-    "hyprland/workspaces",
+    "niri/workspaces",
     "group/hardware"
   ],
 
   "modules-center": [
-    "hyprland/window"
+    "niri/window"
   ],
 
   "modules-right": [
@@ -28,16 +28,13 @@
     "on-click": "rofi -show drun"
   },
 
-  "hyprland/workspaces": {
+  "niri/workspaces": {
     "format": "{name}",
     "disable-scroll": true,
-    "all-outputs": true,
-    "persistent-workspaces": {
-      "*": 5
-    }
+    "all-outputs": true
   },
 
-  "hyprland/window": {
+  "niri/window": {
     "format": "{title}",
     "max-length": 40,
     "separate-outputs": true
@@ -103,7 +100,7 @@
     "format-ethernet": "󰈀 ",
     "format-disconnected": "󰤭 ",
     "tooltip-format": "{essid} ({signalStrength}%)",
-    "on-click": "kitty -e nmtui"
+    "on-click": "kitty & nmgui"
   },
 
   "bluetooth": {
@@ -172,6 +169,6 @@
   "custom/power": {
     "format": "⏻",
     "tooltip": false,
-    "on-click": "~/.config/waybar/power_menu.sh"
+    "on-click": "~/.config/waybar/power_menu-niri.sh"
   }
 }
