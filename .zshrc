@@ -114,3 +114,7 @@ eval "$(zoxide init zsh)"
 
 # opencode
 export PATH=/home/zeeshan506/.opencode/bin:$PATH    
+
+#Laravel
+export PATH="$HOME/.config/composer/vendor/bin:$PATH"
+eval "$(mise activate zsh)"
