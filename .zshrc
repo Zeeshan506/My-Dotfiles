@@ -101,11 +101,11 @@ alias ls='eza --color=always --icons=always'
 alias ll='eza -lh --color=always --icons=always --git'
 alias la='eza -lha --color=always --icons=always --git'
 alias tree='eza --tree --icons=always'
-
+alias reload='source ~/.zshrc'
 
 alias s='yay -Ss'
-
-
+alias bdr='$HOME/go/bin/bootdev run'
+alias bds='$HOME/go/bin/bootdev run -s'
 # -----------------------------
 # External tools
 # -----------------------------
@@ -117,4 +117,9 @@ export PATH=/home/zeeshan506/.opencode/bin:$PATH
 
 #Laravel
 export PATH="$HOME/.config/composer/vendor/bin:$PATH"
+export PATH="$PATH:$HOME/worldbanc/private/bin"
+export PATH="$PATH:/usr/bin/go"
 eval "$(mise activate zsh)"
+
+# Generated for envman. Do not edit.
+[ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
