@@ -16,3 +16,7 @@
 README\.md
 .*\.backup.*
 .*\.bak$
+^\.agents$
+^\.claude$
+^\.codex$
+^\.gemini$

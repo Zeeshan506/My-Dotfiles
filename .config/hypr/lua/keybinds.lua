@@ -76,12 +76,22 @@ hl.bind(mainMod .. " + P", hl.dsp.window.pin())
 hl.bind(mainMod .. " + Z", hl.dsp.workspace.toggle_special("magic"))
 hl.bind(mainMod .. " + SHIFT + Z", hl.dsp.window.move({ workspace = "special:magic" }))
 
--- Gloview integration (if plugin loaded)
-hl.bind(mainMod .. " + Tab", hl.dsp.global("gloview:toggle"))
-hl.bind(mainMod .. " + SHIFT + Tab", hl.dsp.global("gloview:desktop"))
-hl.bind(mainMod .. " + CTRL + Tab", hl.dsp.global("gloview:allworkspaces"))
-hl.bind(mainMod .. " + bracketright", hl.dsp.global("gloview:next"))
-hl.bind(mainMod .. " + bracketleft", hl.dsp.global("gloview:prev"))
+-- Gloview integration (supporting native hl.plugin.gloview & dynamic hyprpm load)
+local function gloview(action, arg)
+    return function()
+        if hl.plugin and hl.plugin.gloview and type(hl.plugin.gloview[action]) == "function" then
+            hl.plugin.gloview[action](arg)
+        else
+            hl.dispatch("gloview:" .. action, arg or "")
+        end
+    end
+end
+
+hl.bind(mainMod .. " + Tab", gloview("toggle"))
+hl.bind(mainMod .. " + SHIFT + Tab", gloview("desktop"))
+hl.bind(mainMod .. " + CTRL + Tab", gloview("allworkspaces"))
+hl.bind(mainMod .. " + bracketright", gloview("next"))
+hl.bind(mainMod .. " + bracketleft", gloview("prev"))
 
 -- Workspaces 1-9
 for i = 1, 9 do

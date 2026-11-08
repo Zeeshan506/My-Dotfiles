@@ -162,21 +162,37 @@ stow -D .
 - **Mod + Tab**: Gloview overview (when loaded)
 - **Mod + X**: Power menu
 
-### Niri (Native Scrolling & Overview)
-- **Mod + Return**: Launch Kitty terminal
-- **Mod + Q**: Close window
-- **Mod + D / Mod + Tab**: Native overview
-- **Mod + Space**: App launcher
-- **Mod + F**: Maximize column
-- **Mod + C**: Center column
-- **Mod + Minus / Equal**: Adjust column width
-- **Mod + X**: Power menu
+### Niri (Native Scrolling, Overview & Mouse First)
+- **Hot Corners**: Move cursor into **top-right** or **top-left** screen corner to instantly toggle native overview.
+- **Mod + Return**: Launch Kitty terminal.
+- **Mod + Space**: Launch Rofi application menu (`rofi -show drun`).
+- **Mod + Q**: Close window.
+- **Mod + D / Mod + Tab**: Native overview (`toggle-overview`).
+- **Mod + F / Mod + Shift + F**: Maximize column / Fullscreen window.
+- **Mod + C**: Center focused column.
+- **Mod + Minus / Equal**: Decrease / increase column width by 10%.
+- **Mod + Left Mouse Drag**: Interactive window movement.
+- **Mod + Right Mouse Drag**: Interactive window resizing.
+- **Mod + Mouse Wheel**: Scroll workspaces vertically (`Mod + WheelDown/Up`) and columns horizontally (`Mod + WheelRight/Left`).
+- **Mod + Shift + S / W / O**: Screenshot region / window / full output.
+- **Mod + Shift + C**: Clipboard history menu via Cliphist and Rofi.
+- **Mod + T**: Open Waypaper graphical wallpaper manager.
+- **Mod + X**: Power menu (Lock, Suspend, Logout, Reboot, Shutdown).
+- **Hardware Keys**: Native volume (`wpctl`), brightness (`brightnessctl`), and media playback (`playerctl`).
 
 ---
 
-## 5. Security & Keyring Unlocking
+## 5. Security, Keyring Unlocking & Vault Strategy
 
-SDDM unlocks GNOME Keyring automatically via PAM upon successful graphical login (`pam_gnome_keyring.so`).
-- Secret Service D-Bus provider: `gnome-keyring-daemon`
-- SSH agent integration: systemd socket-activated `gcr-ssh-agent.socket` or `gpg-agent-ssh`
-- Vault storage: Developer API tokens and sensitive credentials must be stored in Bitwarden or KeePassXC, never in git repositories or unencrypted dotfiles.
+- **Session Unlock**: SDDM unlocks GNOME Keyring automatically via PAM upon successful graphical login (`pam_gnome_keyring.so`).
+- **Secret Service**: Single ownership of `org.freedesktop.secrets` by `gnome-keyring-daemon`.
+- **SSH Agent Integration**: Systemd user socket `gcr-ssh-agent.socket` or `gpg-agent-ssh`.
+- **Developer Secret Storage**:
+  - Personal Vault: **Bitwarden** (cloud-synchronized, encrypted vault with MFA, CLI access via `bw`).
+  - Local Encrypted Database: **KeePassXC** (local offline `.kdbx` file).
+  - Never commit API keys, cloud tokens, or database passwords to Git.
+  - Inject secrets into development shells using environment managers or local uncommitted `.env` files.
+- **Credential Recovery Workflow**:
+  - Export Bitwarden vault as password-protected encrypted JSON (`.json`) periodically to an offline, encrypted USB drive.
+  - On a fresh installation, restore the vault using your master password and emergency sheet recovery kit.
+

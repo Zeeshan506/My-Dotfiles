@@ -29,8 +29,8 @@
   },
 
   "niri/workspaces": {
-    "format": "{name}",
-    "disable-scroll": true,
+    "format": "{value}",
+    "disable-scroll": false,
     "all-outputs": true
   },
 
