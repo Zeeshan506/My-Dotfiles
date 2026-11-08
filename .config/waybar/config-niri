@@ -100,7 +100,7 @@
     "format-ethernet": "󰈀 ",
     "format-disconnected": "󰤭 ",
     "tooltip-format": "{essid} ({signalStrength}%)",
-    "on-click": "kitty & nmgui"
+    "on-click": "kitty -e nmtui"
   },
 
   "bluetooth": {

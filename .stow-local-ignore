@@ -1,0 +1,18 @@
+# Standard Stow default ignores preserved:
+^\.git$
+^\.gitignore$
+^\.gitmodules$
+^\.stowrc$
+^\.stow-local-ignore$
+.*~
+#*#
+\.\#.*
+(^|/)cvs(/|$)
+(^|/)\.svn(/|$)
+(^|/)\.hg(/|$)
+(^|/)\.bzr(/|$)
+
+# Repository documentation and backup ignore:
+README\.md
+.*\.backup.*
+.*\.bak$

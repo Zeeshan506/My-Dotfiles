@@ -1,0 +1,21 @@
+-- Autostart processes
+-- See https://wiki.hypr.land/Configuring/Basics/Autostart/
+
+hl.on("hyprland.start", function ()
+    hl.exec_cmd("systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP XDG_SESSION_TYPE")
+    hl.exec_cmd("dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP XDG_SESSION_TYPE")
+    hl.exec_cmd("systemctl --user start hyprpolkitagent")
+    hl.exec_cmd("waybar -c " .. (os.getenv("HOME") or "/home/zeshan6a") .. "/.config/waybar/config-hyprland")
+    hl.exec_cmd("swaync")
+    hl.exec_cmd("wl-paste --type text --watch cliphist store")
+    hl.exec_cmd("wl-paste --type image --watch cliphist store")
+    hl.exec_cmd("nm-applet --indicator")
+    hl.exec_cmd("blueman-applet")
+    hl.exec_cmd("udiskie --tray")
+    hl.exec_cmd("awww-daemon")
+    hl.exec_cmd("awww img ~/Wallpapers/wallhaven-21d6g9_1920x1080.png")
+    hl.exec_cmd("hypridle")
+    hl.exec_cmd("~/.config/waybar/watch.sh")
+    hl.exec_cmd("xfce4-power-manager")
+    hl.exec_cmd("hyprpm reload -n")
+end)

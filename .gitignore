@@ -12,3 +12,11 @@
 # zsh noise
 .zcompdump*
 .zsh_history
+
+# Ignore local backup files
+*.bak
+*.backup*
+
+# Local secrets & editor private overrides
+.config/zed/settings.json
+.config/zed/settings_backup.json

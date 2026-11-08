@@ -21,7 +21,7 @@ binds {
     Mod+Shift+C hotkey-overlay-title="Clipboard History" {
         spawn-sh "cliphist list | rofi -dmenu -i -p Clipboard | cliphist decode | wl-copy";
     }
-    Mod+X hotkey-overlay-title="Power Menu" { spawn "/home/zeshan6a/.config/waybar/power_menu-niri.sh"; }
+    Mod+X hotkey-overlay-title="Power Menu" { spawn "~/.config/waybar/power_menu-niri.sh"; }
     Mod+Comma hotkey-overlay-title="Settings" {
         spawn "dms" "ipc" "call" "settings" "focusOrToggle";
     }

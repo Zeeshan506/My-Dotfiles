@@ -113,7 +113,7 @@ eval "$(fzf --zsh)"
 eval "$(zoxide init zsh)"
 
 # opencode
-export PATH=/home/zeeshan506/.opencode/bin:$PATH    
+export PATH=$HOME/.opencode/bin:$PATH    
 
 #Laravel
 export PATH="$HOME/.config/composer/vendor/bin:$PATH"
