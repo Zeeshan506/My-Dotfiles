@@ -1,0 +1,24 @@
+{
+  "version": 3,
+  "skills": {
+    "sanity-best-practices": {
+      "source": "sanity-io/agent-toolkit",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/sanity-io/agent-toolkit.git",
+      "skillPath": "skills/sanity-best-practices/SKILL.md",
+      "skillFolderHash": "c59e351749afb923c5b67fb99cb4e60625c910b9",
+      "installedAt": "2026-10-31T06:58:16.468Z",
+      "updatedAt": "2026-10-31T07:29:07.869Z"
+    },
+    "sanity-migration": {
+      "source": "sanity-io/agent-toolkit",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/sanity-io/agent-toolkit.git",
+      "skillPath": "skills/sanity-migration/SKILL.md",
+      "skillFolderHash": "89491b0d00b52d185ad87a337641e467b7bfef6c",
+      "installedAt": "2026-10-31T06:58:16.472Z",
+      "updatedAt": "2026-10-31T07:29:07.874Z"
+    }
+  },
+  "dismissed": {}
+}

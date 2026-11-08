@@ -1,0 +1,70 @@
+#!/usr/bin/env bash
+
+# Lockfile to track the state and store the background process PID
+LOCK_FILE="/tmp/nosleep.lock"
+
+# Send a notification that replaces the previous one if possible, using a consistent ID
+send_notification() {
+    local summary="$1"
+    local body="$2"
+    local icon="$3"
+    # Using a fixed replace-id so notifications cleanly overwrite each other instead of stacking
+    notify-send -r 9922 "$summary" "$body" -i "$icon" -t 3000
+}
+
+stop_nosleep() {
+    if [ -f "$LOCK_FILE" ]; then
+        PID=$(cat "$LOCK_FILE")
+        if kill -0 "$PID" 2>/dev/null; then
+            kill "$PID"
+            send_notification "System Awake: OFF" "Default power saving and sleep settings restored." "battery"
+            echo "☀️ Non-sleep mode disabled. System default power saving restored."
+        else
+            echo "Lockfile found but process wasn't running. Cleaning up."
+        fi
+        rm -f "$LOCK_FILE"
+    else
+        echo "Non-sleep mode is already disabled."
+    fi
+}
+
+start_nosleep() {
+    if [ -f "$LOCK_FILE" ]; then
+        PID=$(cat "$LOCK_FILE")
+        if kill -0 "$PID" 2>/dev/null; then
+            echo "☕ Non-sleep mode is already active (PID: $PID)."
+            exit 0
+        fi
+    fi
+
+    send_notification "System Awake: ON" "Screen sleep and suspension are now blocked." "caffeine"
+    echo "☕ Activating Non-sleep mode. Your screen will stay awake..."
+
+    # systemd-inhibit blocks sleep, idle, and suspend.
+    systemd-inhibit \
+        --what="idle:sleep:handle-lid-switch" \
+        --who="nosleep-script" \
+        --why="Manual override to keep screen awake" \
+        --mode="block" \
+        sleep infinity &
+
+    # Save the PID of the systemd-inhibit wrapper
+    echo $! > "$LOCK_FILE"
+}
+
+# Check command line arguments
+case "$1" in
+    on)
+        start_nosleep
+        ;;
+    off)
+        stop_nosleep
+        ;;
+    toggle|*)
+        if [ -f "$LOCK_FILE" ]; then
+            stop_nosleep
+        else
+            start_nosleep
+        fi
+        ;;
+esac
